@@ -95,8 +95,6 @@ public class FastqLoader extends LoadFunc implements LoadMetadata {
             Text fastqrec_name = ((FastqRecordReader)in).getCurrentKey();
             SequencedFragment fastqrec = ((FastqRecordReader)in).getCurrentValue();
 
-            //mProtoTuple.add(new String(fastqrec_name.toString()));
-
             mProtoTuple.add(fastqrec.getInstrument());
             mProtoTuple.add(fastqrec.getRunNumber());
             mProtoTuple.add(fastqrec.getFlowcellId());
@@ -110,6 +108,7 @@ public class FastqLoader extends LoadFunc implements LoadMetadata {
             mProtoTuple.add(fastqrec.getIndexSequence());
             mProtoTuple.add(fastqrec.getSequence().toString());
             mProtoTuple.add(fastqrec.getQuality().toString());
+            mProtoTuple.add(fastqrec_name.toString());
 
             Tuple t =  mTupleFactory.newTupleNoCopy(mProtoTuple);
             mProtoTuple = null;
@@ -152,6 +151,7 @@ public class FastqLoader extends LoadFunc implements LoadMetadata {
         s.add(new Schema.FieldSchema("index_sequence", DataType.CHARARRAY));
         s.add(new Schema.FieldSchema("sequence", DataType.CHARARRAY));
         s.add(new Schema.FieldSchema("quality", DataType.CHARARRAY));
+        s.add(new Schema.FieldSchema("id", DataType.CHARARRAY));
 
         return new ResourceSchema(s);
     }
