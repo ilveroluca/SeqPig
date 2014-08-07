@@ -77,6 +77,7 @@ public class FastqLoader extends LoadFunc implements LoadMetadata {
     //   index_sequence: string
     //   sequence: string
     //   quality: string (note: we assume that encoding chosen on command line!!!)
+    //   id: string
 
     public FastqLoader() {}
 
